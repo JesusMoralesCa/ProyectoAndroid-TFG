@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/iniciarS"
+
+    android:background="@color/grey"
+    >
+
+    <ImageView
+        android:layout_marginTop="48dp"
+        android:id="@+id/Imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/email"
+        app:srcCompat="@mipmap/sho"
+        />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="87dp"
+        android:background="@drawable/style_emailback"
+        android:drawableStart="@drawable/correo"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="@string/empty_email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="#ee638f"
+        android:textColorHint="#c80dcd"
+        app:layout_constraintTop_toBottomOf="@id/Imageview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/contraseña"
+         />
+
+    <EditText
+        android:id="@+id/contraseña"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/style_emailback"
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="#ee638f"
+        android:textColorHint="#c80dcd"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/Terminos"
+         />
+
+    <TextView
+        android:id="@+id/iniciar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/style_iniciarsesion"
+        android:fontFamily="sans-serif-black"
+        android:onClick="login"
+        android:padding="15dp"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/Terminos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
+
+         />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@id/iniciar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/loginButton"
+        >
+
+        <Button
+            android:id="@+id/google"
+            android:layout_width="180dp"
+            android:layout_height="61dp"
+
+            android:drawableLeft="@drawable/icon_google"
+            android:onClick="googleInit"
+            android:text="@string/google"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/facebook"
+             />
+
+        <Button
+            android:id="@+id/facebook"
+            android:layout_width="180dp"
+            android:layout_height="61dp"
+
+            android:drawableLeft="@drawable/icon_facebook"
+            android:onClick="facebookInit"
+            android:text="@string/facebook"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <CheckBox
+        android:id="@+id/Terminos"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="13dp"
+        android:text="@string/terminos"
+        app:layout_constraintTop_toBottomOf="@id/contraseña"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/iniciar"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

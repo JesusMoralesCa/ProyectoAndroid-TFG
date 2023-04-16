@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TFG</string>
+
+    <string name="login">Iniciar sesión</string>
+    <string name="password">Contraseña</string>
+
+    <string name="empty_email">Introduce tu email</string>
+    <string name="Invalid_email">El email introducido no existe</string>
+
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+
+    <string name="terminos">He leido y aceptado los terminos y condiciones de uso</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "214696032285",
+    "project_id": "tfg-jesusmorales",
+    "storage_bucket": "tfg-jesusmorales.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214696032285:android:a61cf43fc98760dab1eef4",
+        "android_client_info": {
+          "package_name": "com.example.tfg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214696032285-hbe153euhmlbg0gsfvbhn584qmj6r8on.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMiKjGgNkQcF6kUifqMxeTwfUvD_Brhsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214696032285-hbe153euhmlbg0gsfvbhn584qmj6r8on.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
