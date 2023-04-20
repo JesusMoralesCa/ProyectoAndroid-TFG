@@ -93,8 +93,8 @@ class LoginActivity : AppCompatActivity() {
         usermail = email
         providerSession = provider
 
-        // val intent = Intent(this, MainActivity::class.java)
-        // startActivity(intent)
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
     }
 
     private fun register(){

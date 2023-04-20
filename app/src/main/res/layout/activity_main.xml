@@ -8,6 +8,21 @@
     android:background="@color/blue">
 
 
+
+    <TextView
+        android:id="@+id/CerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="¿Has olvidado la contraseña?"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:onClick="callSingOut"
+
+        />
+
+
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
