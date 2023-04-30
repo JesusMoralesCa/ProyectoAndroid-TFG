@@ -54,7 +54,7 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:paddingStart="20dp"
         android:text=""
         android:textAlignment="viewStart"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@id/contraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/iniciar"
+        app:layout_constraintBottom_toTopOf="@id/btnIniciarS"
 
         />
 
@@ -86,7 +86,7 @@
 
 
     <TextView
-        android:id="@+id/iniciar"
+        android:id="@+id/btnIniciarS"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="10dp"
@@ -107,7 +107,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_constraintTop_toBottomOf="@id/iniciar"
+        app:layout_constraintTop_toBottomOf="@id/btnIniciarS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
@@ -123,7 +123,7 @@
             android:layout_height="61dp"
 
             android:drawableLeft="@drawable/icon_google"
-            android:onClick="googleInit"
+            android:onClick="callSingInGoogle"
             android:text="@string/google"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -137,7 +137,7 @@
             android:layout_height="61dp"
 
             android:drawableLeft="@drawable/icon_facebook"
-            android:onClick="facebookInit"
+            android:onClick="callSingInFacebook"
             android:text="@string/facebook"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

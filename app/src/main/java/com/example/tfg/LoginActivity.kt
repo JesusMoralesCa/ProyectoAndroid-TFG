@@ -10,8 +10,17 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.SimpleAdapter
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,6 +35,11 @@ class LoginActivity : AppCompatActivity() {
         lateinit var providerSession: String
 
     }
+
+
+    private var RC_SIGN_IN = 9001
+
+
 
     private var email by Delegates.notNull<String>()
     private var password by Delegates.notNull<String>()
@@ -46,6 +60,10 @@ class LoginActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.email)
         etPassword = findViewById(R.id.contraseña)
         mAuth = FirebaseAuth.getInstance()
+
+        manageButtonLogin()
+        etEmail.doOnTextChanged{ text, start, before, count -> manageButtonLogin()}
+        etPassword.doOnTextChanged{ text, start, before, count -> manageButtonLogin()}
     }
 
 
@@ -59,6 +77,92 @@ class LoginActivity : AppCompatActivity() {
             goHome(currentUser.email.toString(), currentUser.providerId)
         }
     }
+/*
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = mAuth.currentUser
+        updateUI(currentUser)
+    }
+
+*/
+
+
+
+    //Iniciar sesion con google
+
+    fun callSingInGoogle(view: View){
+        singInGoogle()
+
+    }
+
+    private fun singInGoogle(){
+
+        // Configure Google Sign In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+       var googleSignInClient = GoogleSignIn.getClient(this, gso)
+        googleSignInClient.signOut()
+        startActivityForResult(googleSignInClient.signInIntent, RC_SIGN_IN)
+
+    }
+
+
+
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+
+            try {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)!!
+
+                if (account != null){
+                    email = account.email!!
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    mAuth.signInWithCredential(credential).addOnCompleteListener{
+                        if (it.isSuccessful) goHome(email, "Google")
+                        else Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
+                    }
+                }
+
+
+
+            } catch (e: ApiException) {
+                Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
+            }
+        }
+    }
+    // [END onactivityresult]
+
+/*
+    // [START auth_with_google]
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+
+                    val user = mAuth.currentUser
+                    updateUI(user)
+                } else {
+
+                    updateUI(null)
+                }
+            }
+    }
+    // [END auth_with_google]
+
+*/
     //
 
     //Para salir de la app
@@ -69,6 +173,22 @@ class LoginActivity : AppCompatActivity() {
         startActivity(startMain)
     }
 
+
+
+    private fun manageButtonLogin(){
+        var btnIniciarS =findViewById<TextView>(R.id.btnIniciarS)
+        email = etEmail.text.toString()
+        password = etPassword.text.toString()
+
+        if(TextUtils.isEmpty(password) || ValidateEmail.isEmail(email) == false) {
+            btnIniciarS.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
+            btnIniciarS.isEnabled = false
+
+        }else{
+            btnIniciarS.setBackground(ContextCompat.getDrawable(this, R.drawable.style_iniciarsesion))
+            btnIniciarS.isEnabled = true
+        }
+    }
 
     fun login(view: View){
         loginUser()
@@ -140,6 +260,11 @@ class LoginActivity : AppCompatActivity() {
         }
         else Toast.makeText(this,"Indica un email", Toast.LENGTH_SHORT).show()
     }
+
+
+
+
+
 
 
 }
