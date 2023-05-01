@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+
+    <ImageView
+        android:layout_marginTop="48dp"
+        android:id="@+id/ImageviewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/userEmail"
+        app:srcCompat="@mipmap/sho"
+        />
+
+    <EditText
+        android:id="@+id/userEmail"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/style_emailback"
+        android:drawableStart="@drawable/correo"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="@string/empty_email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="#ee638f"
+        android:textColorHint="#c80dcd"
+        app:layout_constraintBottom_toTopOf="@id/userEmail2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ImageviewRegister"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/userEmail2"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="87dp"
+        android:background="@drawable/style_emailback"
+        android:drawableStart="@drawable/correo"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Introduce tu email otra vez"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="#ee638f"
+        android:textColorHint="#c80dcd"
+        app:layout_constraintTop_toBottomOf="@id/userEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/UserPass"
+        />
+
+
+    <EditText
+        android:id="@+id/UserPass"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/style_emailback"
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingStart="20dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="#ee638f"
+        android:textColorHint="#c80dcd"
+        app:layout_constraintTop_toBottomOf="@id/userEmail2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/UserPass2"
+        />
+
+
+    <EditText
+        android:id="@+id/UserPass2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/style_emailback"
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingStart="20dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="#ee638f"
+        android:textColorHint="#c80dcd"
+        app:layout_constraintTop_toBottomOf="@id/UserPass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/registerUser"
+         />
+
+    <TextView
+        android:id="@+id/registerUser"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/style_iniciarsesion"
+        android:fontFamily="sans-serif-black"
+        android:onClick="userRegister"
+        android:padding="15dp"
+        android:text="Registrarse"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/UserPass2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

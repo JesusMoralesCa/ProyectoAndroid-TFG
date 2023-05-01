@@ -77,16 +77,6 @@ class LoginActivity : AppCompatActivity() {
             goHome(currentUser.email.toString(), currentUser.providerId)
         }
     }
-/*
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        updateUI(currentUser)
-    }
-
-*/
-
 
 
     //Iniciar sesion con google
@@ -130,7 +120,17 @@ class LoginActivity : AppCompatActivity() {
                     email = account.email!!
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     mAuth.signInWithCredential(credential).addOnCompleteListener{
-                        if (it.isSuccessful) goHome(email, "Google")
+                        if (it.isSuccessful){
+
+                            var dbRegister = FirebaseFirestore.getInstance()
+                            var registroInicial = false
+                            dbRegister.collection("usuarios").document(email).set(hashMapOf(
+                                "Email" to email,
+                                "RegistroInicial" to registroInicial
+                            ))
+
+                            goHome(email, "Google")
+                        }
                         else Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
                     }
                 }
@@ -144,26 +144,7 @@ class LoginActivity : AppCompatActivity() {
     }
     // [END onactivityresult]
 
-/*
-    // [START auth_with_google]
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
 
-                    val user = mAuth.currentUser
-                    updateUI(user)
-                } else {
-
-                    updateUI(null)
-                }
-            }
-    }
-    // [END auth_with_google]
-
-*/
-    //
 
     //Para salir de la app
     override fun onBackPressed() {
@@ -173,6 +154,14 @@ class LoginActivity : AppCompatActivity() {
         startActivity(startMain)
     }
 
+
+    fun registerFun(view: View){
+        manageButtonRegister()
+    }
+    private fun manageButtonRegister(){
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+    }
 
 
     private fun manageButtonLogin(){
@@ -201,9 +190,9 @@ class LoginActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){ task->
                 if (task.isSuccessful) goHome(email, "email")
-                else{
-                    register()
-                }
+                //else{
+                //    register()
+                //}
             }
     }
 
@@ -216,7 +205,7 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
-
+/*
     private fun register(){
         email = etEmail.text.toString()
         password = etPassword.text.toString()
@@ -227,10 +216,11 @@ class LoginActivity : AppCompatActivity() {
 
                     var dateRegister = SimpleDateFormat("dd/MM/yyyy").format(Date())
                     var dbRegister = FirebaseFirestore.getInstance()
+                    var registroInicial = false
                     dbRegister.collection("usuarios").document(email).set(hashMapOf(
                         "usuario" to email,
-                        "FechaDeRegistro" to dateRegister
-
+                        "FechaDeRegistro" to dateRegister,
+                        "RegistroInicial" to registroInicial
                     ))
 
                     goHome(email,"email")
@@ -240,7 +230,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
-
+*/////
 
     //Forgot Password -- Actividad para cuando se olvida la contraseña
 

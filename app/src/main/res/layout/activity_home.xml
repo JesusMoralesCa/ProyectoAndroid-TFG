@@ -8,7 +8,19 @@
     tools:context=".HomeActivity">
 
 
+    <TextView
+        android:id="@+id/CerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Cerrar Sesion"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:onClick="callSingOut"
 
+
+        />
 
 
     <FrameLayout
@@ -45,10 +57,5 @@
         app:layout_anchor="@id/bottomAppBar"
         app:maxImageSize="30dp"
         app:tint="@color/lavender"/>
-
-
-
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
