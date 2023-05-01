@@ -28,6 +28,7 @@
         android:id="@+id/closesession"
         android:title="Close"
         android:icon="@drawable/ic_closesession"
+
         />
 
 
