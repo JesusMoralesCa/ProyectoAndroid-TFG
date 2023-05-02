@@ -124,6 +124,7 @@ class LoginActivity : AppCompatActivity() {
 
                             var dbRegister = FirebaseFirestore.getInstance()
                             var registroInicial = false
+                            //var titulo = "Alumno"
                             dbRegister.collection("usuarios").document(email).set(hashMapOf(
                                 "Email" to email,
                                 "RegistroInicial" to registroInicial

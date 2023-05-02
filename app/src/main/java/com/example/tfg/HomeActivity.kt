@@ -13,6 +13,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+
+
         Toast.makeText(this, "Bienvenido $usermail", Toast.LENGTH_SHORT).show()
     }
 
