@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         lateinit var usermail: String
         lateinit var providerSession: String
 
+
     }
 
 
@@ -116,29 +117,60 @@ class LoginActivity : AppCompatActivity() {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
 
-                if (account != null){
+                if (account != null) {
                     email = account.email!!
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                    mAuth.signInWithCredential(credential).addOnCompleteListener{
-                        if (it.isSuccessful){
+
+                    mAuth.signInWithCredential(credential).addOnCompleteListener {
+                        if (it.isSuccessful) {
 
                             var dbRegister = FirebaseFirestore.getInstance()
+                            val registroInicialRef =
+                                dbRegister.collection("usuarios").document(email)
                             var registroInicial = false
                             //var titulo = "Alumno"
-                            dbRegister.collection("usuarios").document(email).set(hashMapOf(
-                                "Email" to email,
-                                "RegistroInicial" to registroInicial
-                            ))
+                            dbRegister.collection("usuarios").document(email).set(
+                                hashMapOf(
+                                    "Email" to email,
+                                    "RegistroInicial" to registroInicial
+                                )
+                            )
 
-                            goHome(email, "Google")
+                            // Obtener el valor actual de "registroInicial" de la base de datos de Firebase
+                            dbRegister.collection("usuarios").document(email).get()
+                                .addOnSuccessListener { document ->
+                                    if (document != null && document.exists()) {
+                                        registroInicial = document.getBoolean("RegistroInicial") ?: false
+
+                                        if (!registroInicial) {
+                                            // El valor de "registroInicial" es "false", inicie una nueva actividad para que el usuario complete el formulario
+
+                                            goFormulario(email, "Google")
+
+                                        } else {
+                                            // El valor de "registroInicial" es "true", llame a la función "goHome"
+                                            goHome(email, "Google")
+                                        }
+                                        /////
+                                        registroInicialRef.update("RegistroInicial", true)
+                                            .addOnCompleteListener { task ->
+                                                if (task.isSuccessful) {
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Registro Inicial comenzando",
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                }
+
+                                                /////
+                                            }
+                                    }
+
+                                } //else Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
                         }
-                        else Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
                     }
                 }
-
-
-
-            } catch (e: ApiException) {
+            }catch (e: ApiException) {
                 Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
             }
         }
@@ -205,6 +237,17 @@ class LoginActivity : AppCompatActivity() {
 
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
+    }
+
+
+    private fun goFormulario(email: String,provider: String){
+        usermail = email
+        providerSession = provider
+
+        val intent = Intent(this, FormularioActivity::class.java)
+        startActivity(intent)
+        finish()
+
     }
 /*
     private fun register(){

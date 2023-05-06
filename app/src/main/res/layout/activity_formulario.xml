@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormularioActivity">
+
+
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    >
+
+    <ImageView
+        android:layout_marginTop="48dp"
+        android:id="@+id/ImageviewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        app:srcCompat="@mipmap/sho"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/ETNombre"
+        android:background="@drawable/style_emailback"
+        android:hint="Añade tu nombre"
+        android:padding="15dp"
+        android:textColor="@color/texto"
+        android:gravity="start|center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColorHint="@color/colorhint"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/ETApellido1"
+        android:background="@drawable/style_emailback"
+        android:hint="Añade tu primer apellido"
+        android:padding="15dp"
+        android:textColor="@color/texto"
+        android:gravity="start|center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColorHint="@color/colorhint"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/ETApellido2"
+        android:background="@drawable/style_emailback"
+        android:hint="Añade tu segundo apellido"
+        android:padding="15dp"
+        android:textColor="@color/texto"
+        android:gravity="start|center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColorHint="@color/colorhint"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/ETTlf"
+        android:background="@drawable/style_emailback"
+        android:hint="Añade tu teléfono"
+        android:padding="15dp"
+        android:textColor="@color/texto"
+        android:gravity="start|center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColorHint="@color/colorhint"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerGrados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/style_emailback"
+        android:padding="15dp"
+        android:textColor="@color/texto"
+        android:gravity="start|center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        />
+
+    <TextView
+        android:id="@+id/SendData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/style_iniciarsesion"
+        android:fontFamily="sans-serif-black"
+        android:onClick="sendData"
+        android:padding="15dp"
+        android:text="Enviar datos"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+
+        />
+    
+</LinearLayout>
+   
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

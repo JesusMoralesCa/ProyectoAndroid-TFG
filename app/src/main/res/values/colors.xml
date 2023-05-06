@@ -11,4 +11,7 @@
     <color name="blue">#595BEA</color>
     <color name="pink">#CA39BB</color>
     <color name="lavender">#8692f7</color>
+    <color name="grey2">#ff424242</color>
+    <color name="texto">#ee638f</color>
+    <color name="colorhint">#c80dcd</color>
 </resources>
