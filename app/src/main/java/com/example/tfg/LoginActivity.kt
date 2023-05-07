@@ -125,8 +125,7 @@ class LoginActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
 
                             var dbRegister = FirebaseFirestore.getInstance()
-                            val registroInicialRef =
-                                dbRegister.collection("usuarios").document(email)
+                            val registroInicialRef = dbRegister.collection("usuarios").document(email)
                             var registroInicial = false
                             //var titulo = "Alumno"
                             dbRegister.collection("usuarios").document(email).set(
@@ -145,13 +144,13 @@ class LoginActivity : AppCompatActivity() {
                                         if (!registroInicial) {
                                             // El valor de "registroInicial" es "false", inicie una nueva actividad para que el usuario complete el formulario
 
-                                            goFormulario(email, "Google")
+                                            goHome(email, "Google")
 
+                                                    /////
+                                                }
                                         } else {
                                             // El valor de "registroInicial" es "true", llame a la función "goHome"
-                                            goHome(email, "Google")
-                                        }
-                                        /////
+                                        goFormulario(email, "Google")
                                         registroInicialRef.update("RegistroInicial", true)
                                             .addOnCompleteListener { task ->
                                                 if (task.isSuccessful) {
@@ -162,11 +161,17 @@ class LoginActivity : AppCompatActivity() {
                                                     )
                                                 }
 
-                                                /////
-                                            }
+
+
+
+
+
+                                        }
+                                        /////
+
                                     }
 
-                                } //else Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
+                                }
                         }
                     }
                 }

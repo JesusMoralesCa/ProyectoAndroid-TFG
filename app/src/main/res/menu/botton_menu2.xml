@@ -1,36 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeB"
         android:title="Home"
         android:icon="@drawable/ic_home"
         />
 
     <item
-        android:id="@+id/library"
+        android:id="@+id/libraryB"
         android:title="Library"
         android:icon="@drawable/ic_library"
         />
     <item
-        android:id="@+id/fab"
-        android:title=""
-        android:enabled="false"
-        />
-
-    <item
-        android:id="@+id/profile"
+        android:id="@+id/profileB"
         android:title="Profile"
         android:icon="@drawable/ic_profile"
         />
 
     <item
-        android:id="@+id/closesession"
+        android:id="@+id/closesessionB"
         android:title="Close"
         android:icon="@drawable/ic_closesession"
         />
-
-
-
-
 </menu>

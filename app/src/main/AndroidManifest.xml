@@ -12,6 +12,15 @@
         android:theme="@style/Theme.TFG"
         tools:targetApi="31">
         <activity
+            android:name=".CloseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FilesActivity"
+            android:exported="false" />
+        <activity
             android:name=".FormularioActivity"
             android:exported="false" />
         <activity
