@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.example.tfg.LoginActivity.Companion.usermail
@@ -63,6 +62,20 @@ class HomeActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signOut()
         startActivity(Intent(this, LoginActivity::class.java))
     }
+    /////////
 
+
+    //////
+
+    fun callListaProf(view: View){
+        listProf()
+    }
+
+    private fun listProf(){
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this, ListaProfesoresActivity::class.java))
+    }
+
+    //////
 
 }

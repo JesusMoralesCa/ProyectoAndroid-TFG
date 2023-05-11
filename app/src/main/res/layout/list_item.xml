@@ -1,0 +1,82 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/nombreProfesorRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Profesor"
+            android:textColor="@color/texto"
+            android:textSize="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/apellidoProfRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apellido1"
+            android:textColor="@color/texto"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/nombreProfesorRV"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/TituloProfRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo"
+            android:textColor="@color/texto"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/apellidoProfRV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/GradoProfRV"
+            />
+
+        <TextView
+            android:id="@+id/GradoProfRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grado"
+            android:textColor="@color/texto"
+            android:textSize="20dp"
+            app:layout_constraintTop_toTopOf="@id/TituloProfRV"
+            app:layout_constraintStart_toEndOf="@+id/TituloProfRV"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/TlfProfRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telefono"
+            android:textColor="@color/texto"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/TituloProfRV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/MailProfRV"/>
+
+        <TextView
+            android:id="@+id/MailProfRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mail"
+            android:textColor="@color/texto"
+            android:textSize="20dp"
+            app:layout_constraintTop_toTopOf="@id/TlfProfRV"
+            app:layout_constraintStart_toEndOf="@+id/TlfProfRV"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
