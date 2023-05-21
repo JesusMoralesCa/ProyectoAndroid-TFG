@@ -14,7 +14,7 @@ import com.example.tfg.ListaProfesoresActivity.Companion.username
 
 class ListaAlumnosActivity : AppCompatActivity() {
 
-    private lateinit var profRecyclerView: RecyclerView
+    private lateinit var alumRecyclerView: RecyclerView
     private lateinit var tv2LoadingData: TextView
     private lateinit var profList: ArrayList<Model>
 
@@ -24,9 +24,9 @@ class ListaAlumnosActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lista_alumnos)
 
 
-        profRecyclerView = findViewById(R.id.rvAlum)
-        profRecyclerView.layoutManager = LinearLayoutManager(this)
-        profRecyclerView.setHasFixedSize(true)
+        alumRecyclerView = findViewById(R.id.rvAlum)
+        alumRecyclerView.layoutManager = LinearLayoutManager(this)
+        alumRecyclerView.setHasFixedSize(true)
         tv2LoadingData = findViewById(R.id.tv2LoadingData)
         profList = arrayListOf<Model>()
 
@@ -35,7 +35,7 @@ class ListaAlumnosActivity : AppCompatActivity() {
 
 
     private fun getAlumData() {
-        profRecyclerView.visibility = View.GONE
+        alumRecyclerView.visibility = View.GONE
         tv2LoadingData.visibility = View.VISIBLE
         FirebaseFirestore.getInstance().collection("/Sensei/JesusMorales/Profesores/" + username +"/Alumnos").get()
             .addOnSuccessListener { teachers ->
@@ -45,10 +45,10 @@ class ListaAlumnosActivity : AppCompatActivity() {
                     profList.add(profData)
                 }
                 val mAdapter = profAdapter(profList)
-                profRecyclerView.adapter = mAdapter
+                alumRecyclerView.adapter = mAdapter
 
 
-                profRecyclerView.visibility = View.VISIBLE
+                alumRecyclerView.visibility = View.VISIBLE
                 tv2LoadingData.visibility = View.GONE
 
             }

@@ -37,6 +37,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/Notifications"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:text="Notificar"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:onClick="callNotificar"
+        app:layout_constraintTop_toBottomOf="@+id/ListaProf"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottonNavView"
         android:layout_width="0dp"

@@ -9,7 +9,7 @@
     tools:context=".FilesActivity">
 
     <TextView
-
+        android:id="@+id/Archivos"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:text="Files"
@@ -17,8 +17,23 @@
         android:gravity="center"
         android:textSize="30dp"
         android:textColor="@color/black"
-
+        android:onClick="callListaArchivos"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/Videos"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:text="ListaVideos"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:onClick="callListaVideos"
+        app:layout_constraintTop_toBottomOf="@+id/Archivos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

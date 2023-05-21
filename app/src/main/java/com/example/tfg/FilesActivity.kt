@@ -3,7 +3,9 @@ package com.example.tfg
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class FilesActivity : AppCompatActivity() {
 
@@ -48,4 +50,14 @@ class FilesActivity : AppCompatActivity() {
 
 
     }
+
+
+    fun callListaArchivos(view: View){
+        goAddVideos()
+    }
+
+    private fun goAddVideos(){
+        startActivity(Intent(this, UploadActivity::class.java))
+    }
+
 }
