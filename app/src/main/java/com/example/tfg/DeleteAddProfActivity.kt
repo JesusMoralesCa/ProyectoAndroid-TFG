@@ -96,10 +96,10 @@ class DeleteAddProfActivity : AppCompatActivity() {
             // Recorre cada documento de la consulta
             for (documentSnapshot in querySnapshot) {
                 val datos = documentSnapshot.data
-                val nombre = datos["Nombre"].toString()
+                val nombre = datos["Nombre"].toString() + datos["Apellido1"].toString()
 
                 // Crea una referencia al nuevo documento en la colección de destino
-                val nuevoDocRef = db.collection(rutaColeccionDestino).document()
+                val nuevoDocRef = db.collection(rutaColeccionDestino).document(documentSnapshot.id)
 
                 // Escribe los datos en el nuevo documento
                 nuevoDocRef.set(datos).addOnSuccessListener {
@@ -117,11 +117,9 @@ class DeleteAddProfActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error al escribir los datos en el nuevo documento", Toast.LENGTH_SHORT).show()
                     // Error al escribir los datos en el nuevo documento
                 }
-
-
-                eliminarColeccion(rutaEliminar)
-
             }
+
+            eliminarColeccion(rutaEliminar)
         }.addOnFailureListener { exception ->
             Toast.makeText(this, "Error al obtener los documentos de la colección de origen", Toast.LENGTH_SHORT).show()
             // Error al obtener los documentos de la colección de origen
@@ -146,7 +144,7 @@ class DeleteAddProfActivity : AppCompatActivity() {
                         val datos = documentSnapshot.data
 
                         // Crea una referencia al nuevo documento en la colección de destino
-                        val nuevoDocRef = db.collection(rutaColeccionDestino).document()
+                        val nuevoDocRef = db.collection(rutaColeccionDestino).document(documentSnapshot.id)
 
                         // Escribe los datos en el nuevo documento
                         if (datos != null) {
@@ -172,8 +170,6 @@ class DeleteAddProfActivity : AppCompatActivity() {
 
     }
 
-
-
-    }
+}
 
 
