@@ -78,7 +78,14 @@ class HomeActivity : AppCompatActivity() {
 
     //////
 
+    fun callGestionar(view: View){
+        Gestionar()
+    }
 
+    private fun Gestionar(){
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this, DeleteAddProfActivity::class.java))
+    }
 
 
 }

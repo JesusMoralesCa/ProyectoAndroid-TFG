@@ -18,6 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre del Profesor"
+            android:padding="5dp"
+            android:background="@drawable/style_emailback"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/texto"
             android:textSize="20dp"
             android:textStyle="bold"/>
@@ -28,6 +31,8 @@
             android:layout_height="wrap_content"
             android:text="Apellido del Profesor"
             android:textColor="@color/texto"
+            android:padding="5dp"
+            android:background="@drawable/style_emailback"
             android:textSize="18dp"/>
 
         <TextView
@@ -37,6 +42,8 @@
             android:text="Título del Profesor"
             android:textColor="@color/texto"
             android:textSize="18dp"
+            android:padding="5dp"
+            android:background="@drawable/style_emailback"
             android:layout_marginTop="8dp"/>
 
         <TextView
@@ -46,6 +53,8 @@
             android:text="Grado del Profesor"
             android:textColor="@color/texto"
             android:textSize="18dp"
+            android:padding="5dp"
+            android:background="@drawable/style_emailback"
             android:layout_marginTop="8dp"/>
 
         <TextView
@@ -55,6 +64,8 @@
             android:text="Teléfono del Profesor"
             android:textColor="@color/texto"
             android:textSize="18dp"
+            android:padding="5dp"
+            android:background="@drawable/style_emailback"
             android:layout_marginTop="8dp"/>
 
         <TextView
@@ -64,6 +75,8 @@
             android:text="Correo electrónico del Profesor"
             android:textColor="@color/texto"
             android:textSize="18dp"
+            android:padding="5dp"
+            android:background="@drawable/style_emailback"
             android:layout_marginTop="8dp"/>
 
     </LinearLayout>
