@@ -107,75 +107,62 @@ class LoginActivity : AppCompatActivity() {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-
             try {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
 
                 if (account != null) {
-                    email = account.email!!
+                    val email = account.email!!
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
 
                     mAuth.signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
-
-                            var dbRegister = FirebaseFirestore.getInstance()
+                            val dbRegister = FirebaseFirestore.getInstance()
                             val registroInicialRef = dbRegister.collection("usuarios").document(email)
-                            var registroInicial = false
-                            //var titulo = "Alumno"
-                            dbRegister.collection("usuarios").document(email).set(
-                                hashMapOf(
-                                    "Email" to email,
-                                    "RegistroInicial" to registroInicial
-                                )
-                            )
 
                             // Obtener el valor actual de "registroInicial" de la base de datos de Firebase
-                            dbRegister.collection("usuarios").document(email).get()
-                                .addOnSuccessListener { document ->
-                                    if (document != null && document.exists()) {
-                                        registroInicial = document.getBoolean("RegistroInicial") ?: false
+                            registroInicialRef.get().addOnSuccessListener { document ->
+                                if (document != null && document.exists()) {
+                                    val registroInicial = document.getBoolean("RegistroInicial") ?: false
 
-                                        if (!registroInicial) {
-                                            // El valor de "registroInicial" es "false", inicie una nueva actividad para que el usuario complete el formulario
-
-                                            goHome(email, "Google")
-
-                                                    /////
-                                                }
-                                        } else {
-                                            // El valor de "registroInicial" es "true", llame a la función "goHome"
+                                    if (!registroInicial) {
+                                        // El valor de "registroInicial" es "false", inicie una nueva actividad para que el usuario complete el formulario
                                         goFormulario(email, "Google")
-                                        registroInicialRef.update("RegistroInicial", true)
-                                            .addOnCompleteListener { task ->
-                                                if (task.isSuccessful) {
-                                                    Toast.makeText(
-                                                        this,
-                                                        "Registro Inicial comenzando",
-                                                        Toast.LENGTH_SHORT
-                                                    )
-                                                }
-
-
-
-
-
-
-                                        }
-                                        /////
-
+                                    } else {
+                                        // El valor de "registroInicial" es "true", llame a la función "goHome"
+                                        goHome(email, "Google")
                                     }
 
+                                    registroInicialRef.update("RegistroInicial", true).addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            Toast.makeText(this, "Registro Inicial comenzando", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                } else {
+                                    // El documento no existe, por lo que se asume que es un nuevo usuario
+                                    val registroInicial = false
+
+                                    dbRegister.collection("usuarios").document(email).set(
+                                        hashMapOf(
+                                            "Email" to email,
+                                            "RegistroInicial" to registroInicial
+                                        )
+                                    )
+
+                                    // Inicie una nueva actividad para que el usuario complete el formulario
+                                    goFormulario(email, "Google")
                                 }
+                            }
                         }
                     }
                 }
-            }catch (e: ApiException) {
-                Toast.makeText(this, "Error en la conexion", Toast.LENGTH_SHORT)
+            } catch (e: ApiException) {
+                Toast.makeText(this, "Error en la conexión", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
     // [END onactivityresult]
 
 
@@ -250,32 +237,7 @@ class LoginActivity : AppCompatActivity() {
         finish()
 
     }
-/*
-    private fun register(){
-        email = etEmail.text.toString()
-        password = etPassword.text.toString()
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener{
-                if (it.isSuccessful){
-
-                    var dateRegister = SimpleDateFormat("dd/MM/yyyy").format(Date())
-                    var dbRegister = FirebaseFirestore.getInstance()
-                    var registroInicial = false
-                    dbRegister.collection("usuarios").document(email).set(hashMapOf(
-                        "usuario" to email,
-                        "FechaDeRegistro" to dateRegister,
-                        "RegistroInicial" to registroInicial
-                    ))
-
-                    goHome(email,"email")
-                }
-                else Toast.makeText(this, "Ha habido un error", Toast.LENGTH_SHORT).show()
-            }
-
-
-    }
-*/////
 
     //Forgot Password -- Actividad para cuando se olvida la contraseña
 

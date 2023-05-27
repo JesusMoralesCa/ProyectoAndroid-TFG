@@ -95,13 +95,13 @@ class FormularioActivity : AppCompatActivity() {
                 var titulo = "Alumno"
                 var profesor = "SinProfesor"
                 dbRegister.collection("/Sensei/JesusMorales/Profesores/SinProfesor/Alumnos")
-                    .document(usermail).set(
+                    .document(nombre + apellido1).set(
                     hashMapOf(
                         "Email" to usermail,
                         "Nombre" to nombre,
                         "Apellido1" to apellido1,
                         "Apellido2" to apellido2,
-                        "Telefono" to telefono,
+                        "Tlf" to telefono,
                         "Grado" to grado,
                         "Titulo" to titulo,
                         "Profesor" to profesor
@@ -111,11 +111,15 @@ class FormularioActivity : AppCompatActivity() {
 
                 var registroInicial = true
                 var permisos = "Alumno"
+                var nombreC = nombre + apellido1
                 //var titulo = "Alumno"
                 dbRegister.collection("usuarios").document(usermail).set(
                     hashMapOf(
                         "RegistroInicial" to registroInicial,
-                        "Permisos" to permisos
+                        "Permisos" to permisos,
+                        "Email" to usermail,
+                        "Nombre" to nombreC,
+                        "Profesor" to "SinProfesor"
                     )
                 )
 

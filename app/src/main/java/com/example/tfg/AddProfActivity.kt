@@ -94,6 +94,24 @@ class AddProfActivity : AppCompatActivity() {
             if (documentSnapshot.exists()) {
                 val datos = documentSnapshot.data
                 datos?.set("Profesor", "JesusMorales")
+                datos?.set("Titulo", "Profesor")
+                val email = datos?.get("Email") as? String
+                var permisos = "Profesor"
+                val updateData = hashMapOf<String, Any>(
+                    "Permisos" to permisos,
+                    "Profesor" to "JesusMorales"
+                )
+
+                if (email != null) {
+                    db.collection("usuarios").document(email).update(updateData)
+                        .addOnSuccessListener {
+                            // Actualización exitosa
+                        }
+                        .addOnFailureListener { exception ->
+                            // Error al actualizar
+                        }
+                }
+
 
                 // Mueve el documento a la colección de destino
                 documentoDestinoRef.set(datos!!).addOnSuccessListener {

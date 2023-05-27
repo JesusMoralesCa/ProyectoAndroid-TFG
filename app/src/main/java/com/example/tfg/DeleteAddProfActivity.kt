@@ -99,7 +99,25 @@ class DeleteAddProfActivity : AppCompatActivity() {
             for (documentSnapshot in querySnapshot) {
                 val datos = documentSnapshot.data
                 datos?.set("Profesor", "SinProfesor")
+                datos?.set("Titulo", "Alumno")
                 val nombre = datos["Nombre"].toString() + datos["Apellido1"].toString()
+                val email = datos?.get("Email") as? String
+                var permisos = "Profesor"
+                val updateData = hashMapOf<String, Any>(
+                    "Permisos" to permisos,
+                    "Profesor" to "SinProfesor"
+                )
+
+                if (email != null) {
+                    db.collection("usuarios").document(email).update(updateData)
+                        .addOnSuccessListener {
+                            // Actualización exitosa
+                        }
+                        .addOnFailureListener { exception ->
+                            // Error al actualizar
+                        }
+                }
+
 
                 // Crea una referencia al nuevo documento en la colección de destino
                 val nuevoDocRef = db.collection(rutaColeccionDestino).document(documentSnapshot.id)
@@ -146,6 +164,23 @@ class DeleteAddProfActivity : AppCompatActivity() {
                     if (documentSnapshot.exists()) {
                         val datos = documentSnapshot.data
                         datos?.set("Profesor", "SinProfesor")
+
+                        val email = datos?.get("Email") as? String
+                        var permisos = "Profesor"
+                        val updateData = hashMapOf<String, Any>(
+                            "Permisos" to permisos,
+                            "Profesor" to "SinProfesor"
+                        )
+
+                        if (email != null) {
+                            db.collection("usuarios").document(email).update(updateData)
+                                .addOnSuccessListener {
+                                    // Actualización exitosa
+                                }
+                                .addOnFailureListener { exception ->
+                                    // Error al actualizar
+                                }
+                        }
 
 
                         // Crea una referencia al nuevo documento en la colección de destino

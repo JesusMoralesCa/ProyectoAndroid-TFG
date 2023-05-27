@@ -11,6 +11,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
 
+    companion object{
+        lateinit var CEmail : String
+    }
+
 
     private  lateinit var bottomNavigationView: BottomNavigationView
 
@@ -33,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profileB -> {
+                    CEmail = usermail
                     startActivity(Intent(applicationContext, ProfileActivity::class.java))
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_letf)
                     finish()
