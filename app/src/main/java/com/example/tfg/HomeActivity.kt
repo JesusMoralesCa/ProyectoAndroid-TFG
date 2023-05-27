@@ -57,16 +57,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     /////CERRAR SESION/////
-    fun callSingOut(view: View){
-        singOff()
-    }
-    private fun singOff(){
-        usermail = ""
 
-
-        FirebaseAuth.getInstance().signOut()
-        startActivity(Intent(this, LoginActivity::class.java))
-    }
     /////////
 
 

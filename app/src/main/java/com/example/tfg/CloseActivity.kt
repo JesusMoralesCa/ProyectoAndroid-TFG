@@ -3,7 +3,9 @@ package com.example.tfg
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class CloseActivity : AppCompatActivity() {
 
@@ -49,5 +51,17 @@ class CloseActivity : AppCompatActivity() {
 
 
 
+    }
+
+
+    fun callSingOut(view: View){
+        singOff()
+    }
+    private fun singOff(){
+        LoginActivity.usermail = ""
+
+
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 }
