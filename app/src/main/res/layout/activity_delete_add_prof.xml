@@ -83,7 +83,7 @@
                     android:textStyle="bold"
                     android:background="@drawable/style_emailback"
                     android:layout_marginRight="5dp"
-                    android:onClick="CallAñadirAlumno"
+                    android:onClick="CallAddProf"
                     />
 
                 <TextView

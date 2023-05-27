@@ -1,5 +1,6 @@
 package com.example.tfg
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,7 +23,8 @@ class DeleteAddProfActivity : AppCompatActivity() {
     private var selectecProf by Delegates.notNull<String>()
     companion object {
 
-        lateinit var username: String
+
+        lateinit var profesorSend: String
 
     }
 
@@ -96,6 +98,7 @@ class DeleteAddProfActivity : AppCompatActivity() {
             // Recorre cada documento de la consulta
             for (documentSnapshot in querySnapshot) {
                 val datos = documentSnapshot.data
+                datos?.set("Profesor", "SinProfesor")
                 val nombre = datos["Nombre"].toString() + datos["Apellido1"].toString()
 
                 // Crea una referencia al nuevo documento en la colección de destino
@@ -142,6 +145,8 @@ class DeleteAddProfActivity : AppCompatActivity() {
                 docRef.get().addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
                         val datos = documentSnapshot.data
+                        datos?.set("Profesor", "SinProfesor")
+
 
                         // Crea una referencia al nuevo documento en la colección de destino
                         val nuevoDocRef = db.collection(rutaColeccionDestino).document(documentSnapshot.id)
@@ -169,6 +174,42 @@ class DeleteAddProfActivity : AppCompatActivity() {
                 }
 
     }
+////////////
+
+
+
+
+    fun CallGestionarAlumno(view: View){
+
+        GestionarAlumno(selectecProf)
+    }
+
+
+
+    private fun GestionarAlumno(profesor: String){
+
+        profesorSend = profesor
+
+        val intent = Intent(this, GestionarAlumnoActivity::class.java)
+        startActivity(intent)
+    }
+
+
+
+    fun CallAddProf(view: View){
+
+        AddProf()
+    }
+
+
+
+    private fun AddProf(){
+
+
+        val intent = Intent(this, AddProfActivity::class.java)
+        startActivity(intent)
+    }
+
 
 }
 

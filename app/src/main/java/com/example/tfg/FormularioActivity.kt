@@ -93,7 +93,8 @@ class FormularioActivity : AppCompatActivity() {
 
                 var dbRegister = FirebaseFirestore.getInstance()
                 var titulo = "Alumno"
-                dbRegister.collection("/Sensei/ appjesusmorales@gmail.com /Profesor/ProfesorPrueba/Alumnos")
+                var profesor = "SinProfesor"
+                dbRegister.collection("/Sensei/JesusMorales/Profesores/SinProfesor/Alumnos")
                     .document(usermail).set(
                     hashMapOf(
                         "Email" to usermail,
@@ -102,16 +103,19 @@ class FormularioActivity : AppCompatActivity() {
                         "Apellido2" to apellido2,
                         "Telefono" to telefono,
                         "Grado" to grado,
-                        "Titulo" to titulo
+                        "Titulo" to titulo,
+                        "Profesor" to profesor
 
                     )
                 )
 
                 var registroInicial = true
+                var permisos = "Alumno"
                 //var titulo = "Alumno"
                 dbRegister.collection("usuarios").document(usermail).set(
                     hashMapOf(
-                        "RegistroInicial" to registroInicial
+                        "RegistroInicial" to registroInicial,
+                        "Permisos" to permisos
                     )
                 )
 
