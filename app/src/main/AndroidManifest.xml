@@ -17,6 +17,9 @@
         android:theme="@style/Theme.TFG"
         tools:targetApi="31">
         <activity
+            android:name=".VideoVerActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddProfActivity"
             android:exported="false" />
         <activity

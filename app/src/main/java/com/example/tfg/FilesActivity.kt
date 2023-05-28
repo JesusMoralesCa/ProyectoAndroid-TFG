@@ -60,4 +60,13 @@ class FilesActivity : AppCompatActivity() {
         startActivity(Intent(this, UploadActivity::class.java))
     }
 
+
+    fun callListaVideos(view: View){
+        Videos()
+    }
+
+    private fun Videos(){
+        startActivity(Intent(this, VideoVerActivity::class.java))
+    }
+
 }
