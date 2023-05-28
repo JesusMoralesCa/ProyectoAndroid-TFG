@@ -211,9 +211,7 @@ class LoginActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){ task->
                 if (task.isSuccessful) goHome(email, "email")
-                //else{
-                //    register()
-                //}
+
             }
     }
 
@@ -222,6 +220,9 @@ class LoginActivity : AppCompatActivity() {
 
         usermail = email
         providerSession = provider
+
+
+
 
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)

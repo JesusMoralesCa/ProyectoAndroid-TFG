@@ -4,23 +4,40 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.example.tfg.LoginActivity.Companion.usermail
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeActivity : AppCompatActivity() {
 
     companion object{
         lateinit var CEmail : String
+        lateinit var ProfesorGA: String
+        lateinit var profesorCompa:String
+
     }
 
 
-    private  lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var GestionarProfesores: TextView
+    private lateinit var GestionarAlumnos: TextView
+    private lateinit var ListaProf: TextView
+    private lateinit var ListaCompa: TextView
 
+    private lateinit var permisos: String
+    private lateinit var profesor: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        GestionarProfesores = findViewById(R.id.Gestion)
+        GestionarAlumnos = findViewById(R.id.GestionAlumnos)
+        ListaProf = findViewById(R.id.ListaProf)
+        ListaCompa = findViewById(R.id.ListaCompa)
+
 
         Toast.makeText(this, "Bienvenido $usermail", Toast.LENGTH_SHORT).show()
 
@@ -52,6 +69,44 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }
         }
+////////////////////
+
+
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("usuarios").document(usermail)
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                permisos = documentSnapshot.getString("Permisos").toString()
+                profesor = documentSnapshot.getString("Profesor").toString()
+                ProfesorGA = documentSnapshot.getString("Nombre").toString()
+                profesorCompa = profesor
+
+
+                if (permisos == "Profesor"){
+                    GestionarProfesores.visibility = View.GONE
+                    GestionarAlumnos.visibility = View.VISIBLE
+
+
+                }
+
+                if (permisos == "Alumno"){
+                    GestionarProfesores.visibility = View.GONE
+                    ListaProf.visibility = View.GONE
+                    ListaCompa.visibility = View.VISIBLE
+
+                }
+
+            } else {
+                Toast.makeText(this, "El documento no existe", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener { exception ->
+            Toast.makeText(this, "Error en la conexión", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+
 
 
     }
@@ -83,5 +138,27 @@ class HomeActivity : AppCompatActivity() {
         startActivity(Intent(this, DeleteAddProfActivity::class.java))
     }
 
+
+    fun callGestionarAlumnos(view: View){
+        GestionarAlumnos()
+    }
+
+    private fun GestionarAlumnos(){
+
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this, GestionarAlumnosPermisosProfesorActivity::class.java))
+    }
+
+
+
+    fun callListaCompa(view: View){
+        ListaCompa()
+    }
+
+    private fun ListaCompa(){
+
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this, ListaAlumnosPermisosAlumnoActivity::class.java))
+    }
 
 }

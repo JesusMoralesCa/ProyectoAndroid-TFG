@@ -17,6 +17,15 @@
         android:theme="@style/Theme.TFG"
         tools:targetApi="31">
         <activity
+            android:name=".ListaAlumnosPermisosAlumnoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddAlumnosPermisosProfActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GestionarAlumnosPermisosProfesorActivity"
+            android:exported="false" />
+        <activity
             android:name=".VideoVerActivity"
             android:exported="false" />
         <activity
